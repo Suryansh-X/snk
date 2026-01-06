@@ -1,0 +1,168 @@
+/* custom-sanika.css
+   - glassmorphic krishna cards
+   - gold shimmer highlight
+   - resume background & skill pills
+*/
+
+:root{
+  --glass-bg: rgba(255,255,255,0.06);
+  --glass-border: rgba(255,255,255,0.08);
+  --muted: rgba(255,255,255,0.65);
+  --gold-1: #c89b2c;
+  --gold-2: #ffd65a;
+  --accent: rgba(255, 255, 255, 0.06);
+}
+
+.krishna-section {
+  padding: 2rem 0;
+}
+
+.krishna-cards {
+  display: flex;
+  gap: 1.25rem;
+  overflow-x: auto;
+  padding: 1rem 0.25rem;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.krishna-card {
+  scroll-snap-align: start;
+  flex: 0 0 320px;
+  height: 420px;
+  border-radius: 16px;
+  padding: 1.25rem;
+  position: relative;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(10px) saturate(120%);
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  color: #fff;
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+}
+
+.krishna-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.36);
+}
+
+.krishna-card .card-img{
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+.krishna-card h4{
+  margin: 0.5rem 0 0.25rem 0;
+  font-size: 1.05rem;
+  color: #fff;
+}
+
+.krishna-card p.hindi{
+  margin: 0.5rem 0 1rem 0;
+  line-height: 1.5;
+  color: rgba(255,255,255,0.95);
+  font-size: 1rem;
+  font-family: 'Noto Sans Devanagari', system-ui, sans-serif;
+}
+
+/* gold shimmering highlight on important lines */
+.gold-shimmer{
+  display:inline-block;
+  background: linear-gradient(90deg, var(--gold-1), var(--gold-2), var(--gold-1));
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: goldShimmer 3s linear infinite;
+  font-weight: 700;
+}
+
+@keyframes goldShimmer {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* subtle moving glow overlay */
+.krishna-card::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(120deg, rgba(255,215,0,0.02), rgba(255,215,0,0.06), rgba(255,215,0,0.02));
+  transform: skewX(-12deg);
+  mix-blend-mode: overlay;
+  animation: slideGlow 6s linear infinite;
+  opacity: 0.25;
+}
+
+@keyframes slideGlow {
+  0% { transform: translateX(-150%) skewX(-12deg); opacity: 0.2; }
+  50% { transform: translateX(150%) skewX(-12deg); opacity: 0.45; }
+  100% { transform: translateX(-150%) skewX(-12deg); opacity: 0.2; }
+}
+
+/* Make resume background distinct */
+.resume {
+  padding: 2rem;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(10,25,47,0.88), rgba(5,12,24,0.94));
+  color: #e6eef8;
+}
+
+/* Skills list without percentages */
+.skills-list.simple {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 0.5rem 0;
+}
+
+.skills-list.simple .skill-pill {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  color: #fff;
+  font-weight: 500;
+  font-size: 0.95rem;
+  backdrop-filter: blur(4px);
+}
+
+/* small utilities */
+.muted { color: var(--muted); font-size: 0.85rem; }
+.hindi { font-family: 'Noto Sans Devanagari', system-ui, sans-serif; }
+
+/* Improve cards scroll appearance */
+.krishna-cards::-webkit-scrollbar { height: 8px; }
+.krishna-cards::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.06); border-radius: 999px; }
+.krishna-cards::-webkit-scrollbar-track { background: transparent; }
+
+/* layout tweaks to ensure spacing in main-content */
+.main-content { padding: 1.5rem; }
+
+/* small responsive tweaks */
+@media (max-width: 960px) {
+  .krishna-card { flex: 0 0 300px; height: 400px; }
+}
+
+@media (max-width: 680px) {
+  .krishna-card { flex: 0 0 280px; height: 360px; }
+  .main-content { padding: 1rem; }
+}
+
+/* Optional: give the testimonial avatar a subtle outline */
+.testimonials-avatar-box img { border-radius: 50%; border: 2px solid rgba(255,255,255,0.06); }
+
+/* Make sure headings remain readable on dark glass backgrounds */
+.h2.article-title, .h3 { color: #f4f7fb; }
+
+/* End of custom-sanika.css */
